@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">TLTT_Application</string>
+    <string name="input_hint_phone">Nhập số điện thoại</string>
+    <string name="input_hint_password">Nhập mật khẩu</string>
+    <string name="input_hint_confirm_pass">Nhập lại mật khẩu</string>
+    <string name="input_hint_name">Nhập họ và tên</string>
+    <string name="text_login_welcome">Hi,\nPlease Login</string>
+    <string name="text_signin_welcome">Create\nAccount</string>
+    <string name="label_hint_phone">Số điện thoại</string>
+    <string name="label_hint_password">Mật khẩu</string>
+    <string name="label_hint_confirm_password">Nhập lại mật khẩu</string>
+    <string name="label_hint_name">Họ và tên</string>
+    <string name="btn_login">Đăng nhập</string>
+    <string name="btn_signin">Đăng kí</string>
+    <string name="Or">Hoặc</string>
+    <string name="Google">Google</string>
+    <string name="Facebook">Facebook</string>
+</resources>
