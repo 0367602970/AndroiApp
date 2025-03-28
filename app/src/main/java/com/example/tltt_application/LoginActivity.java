@@ -2,7 +2,6 @@ package com.example.tltt_application;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -10,27 +9,28 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.tltt_application.AppDatabase.AppDatabase;
-import com.example.tltt_application.objects.User;
+import com.example.tltt_application.databinding.ActivityLoginBinding;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 public class LoginActivity extends AppCompatActivity {
-    private EditText txtPhone, txtPassword;
-    private Button btnLogin;
-    private AppDatabase db;
+    private ActivityLoginBinding binding;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_login2);
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        // Khởi tạo Firestore
+        db = FirebaseFirestore.getInstance();
+
         SharedPreferences sharedPreferences = getSharedPreferences("LoginPrefs", MODE_PRIVATE);
         boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
 
@@ -38,61 +38,56 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
             startActivity(intent);
             finish();
+            return;
         }
+
         customRegister();
-        init();
         processEvents();
     }
 
-    public void init(){
-        try {
-            txtPhone = findViewById(R.id.editPhone);
-            txtPassword = findViewById(R.id.editPassword);
-            btnLogin = findViewById(R.id.btnLogin);
-            db = AppDatabase.getDatabase(this);
-        } catch (Exception ex) {
-            Log.e("Init", ex.getMessage());
-        }
-    }
+    public void processEvents() {
+        binding.btnLogin.setOnClickListener(v -> {
+            String phone = binding.editPhone.getText().toString().trim();
+            String password = binding.editPassword.getText().toString().trim();
 
-    public void processEvents(){
-        btnLogin.setOnClickListener(v -> {
-            try {
-                String phone = txtPhone.getText().toString();
-                String password = txtPassword.getText().toString();
-
-                AppDatabase.databaseWriteExecutor.execute(() -> {
-                    User user = db.userDao().getUserByPhoneNumber(phone);
-                    if (user == null) {
-                        runOnUiThread(() -> Toast.makeText(this, "Số điện thoại không tồn tại!", Toast.LENGTH_SHORT).show());
-                        return;
-                    }
-                    String name = user.getName();
-                    if (user != null && user.getPassword().equals(password)){
-                        runOnUiThread(() -> {
-                            SharedPreferences sharedPreferences = getSharedPreferences("LoginPrefs", MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putBoolean("isLoggedIn", true);
-                            editor.apply();
-                            Intent intent = new Intent(this, HomeActivity.class);
-                            intent.putExtra("name", name);
-                            startActivity(intent);
-                            finish();
-                        });
-                    } else {
-                        runOnUiThread(() -> Toast.makeText(this, "Incorrect phone or password!", Toast.LENGTH_SHORT).show());
-                    }
-                });
-            } catch (Exception ex) {
-                Log.e("Login", ex.getMessage());
-                Toast.makeText(this, "Error occurred!", Toast.LENGTH_SHORT).show();
+            if (phone.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Vui lòng nhập số điện thoại và mật khẩu!", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            // Truy vấn Firestore
+            db.collection("users")
+                    .whereEqualTo("phone", phone)
+                    .get()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful() && !task.getResult().isEmpty()) {
+                            DocumentSnapshot document = task.getResult().getDocuments().get(0);
+                            String storedPassword = document.getString("password");
+                            String name = document.getString("name");
+
+                            if (storedPassword != null && storedPassword.equals(password)) {
+                                SharedPreferences.Editor editor = getSharedPreferences("LoginPrefs", MODE_PRIVATE).edit();
+                                editor.putBoolean("isLoggedIn", true);
+                                editor.apply();
+                                Intent intent = new Intent(this, HomeActivity.class);
+                                intent.putExtra("name", name);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Toast.makeText(this, "Sai mật khẩu!", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(this, "Số điện thoại không tồn tại!", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(e -> {
+                        Log.e("Login", "Lỗi: " + e.getMessage());
+                        Toast.makeText(this, "Đã xảy ra lỗi!", Toast.LENGTH_SHORT).show();
+                    });
         });
     }
 
-    public void customRegister(){
-        TextView tvRegister = findViewById(R.id.tvRegister);
-
+    public void customRegister() {
         String text = "Bạn chưa có tài khoản? Đăng kí ngay";
         SpannableString spannableString = new SpannableString(text);
 
@@ -108,10 +103,8 @@ public class LoginActivity extends AppCompatActivity {
         };
 
         spannableString.setSpan(clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-        tvRegister.setText(spannableString);
-        tvRegister.setMovementMethod(LinkMovementMethod.getInstance());
-        tvRegister.setHighlightColor(Color.TRANSPARENT);
-
+        binding.tvRegister.setText(spannableString);
+        binding.tvRegister.setMovementMethod(LinkMovementMethod.getInstance());
+        binding.tvRegister.setHighlightColor(android.graphics.Color.TRANSPARENT);
     }
 }

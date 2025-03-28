@@ -28,7 +28,7 @@
                     android:layout_height="wrap_content"
                     android:contentDescription="Login Header"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/img_login_header" />
+                    android:src="@drawable/img_header" />
 
                 <TextView
                     android:id="@+id/txtPlsLogin"

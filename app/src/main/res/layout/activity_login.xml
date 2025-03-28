@@ -11,15 +11,14 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="@dimen/default_padding_top">
+            android:layout_height="wrap_content" >
 
             <ImageView
                 android:id="@+id/imgHeader"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
-                android:src="@drawable/img_login_header"
+                android:src="@drawable/img_header"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -35,7 +34,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/imgHeader"
                 android:paddingStart="@dimen/default_padding_large"
-                android:paddingTop="@dimen/default_padding_top"/>
+                android:paddingTop="@dimen/default_padding_large"/>
 
             <TextView
                 android:id="@+id/textPhoneLabel"

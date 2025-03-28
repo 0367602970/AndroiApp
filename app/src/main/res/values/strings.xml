@@ -15,4 +15,9 @@
     <string name="Or">Hoặc</string>
     <string name="Google">Google</string>
     <string name="Facebook">Facebook</string>
+    <string name="Tab1">Thuê ngày</string>
+    <string name="Tab2">Thuê tháng</string>
+    <string name="city">Tỉnh/Thành phố</string>
+    <string name="date1">Ngày nhận xe</string>
+    <string name="date2">Ngày trả xe</string>
 </resources>

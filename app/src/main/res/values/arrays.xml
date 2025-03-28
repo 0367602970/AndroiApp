@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="cities">
+        <item>Chọn tỉnh/thành phố</item>
+        <item>Hà Nội</item>
+        <item>TP. Hồ Chí Minh</item>
+    </string-array>
+</resources>
