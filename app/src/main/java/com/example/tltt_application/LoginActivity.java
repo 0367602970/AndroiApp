@@ -10,14 +10,15 @@ import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.tltt_application.databinding.ActivityLoginBinding;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginActivity extends AppCompatActivity {
+
     private ActivityLoginBinding binding;
     private FirebaseFirestore db;
 
@@ -35,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
 
         if (isLoggedIn) {
-            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
             return;
@@ -68,9 +69,11 @@ public class LoginActivity extends AppCompatActivity {
                             if (storedPassword != null && storedPassword.equals(password)) {
                                 SharedPreferences.Editor editor = getSharedPreferences("LoginPrefs", MODE_PRIVATE).edit();
                                 editor.putBoolean("isLoggedIn", true);
+                                editor.putString("userName", name); // Lưu name vào SharedPreferences
                                 editor.apply();
-                                Intent intent = new Intent(this, HomeActivity.class);
-                                intent.putExtra("name", name);
+
+                                Intent intent = new Intent(this, MainActivity.class);
+                                intent.putExtra("name", name); // Truyền name qua Intent
                                 startActivity(intent);
                                 finish();
                             } else {

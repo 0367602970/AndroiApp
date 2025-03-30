@@ -20,4 +20,9 @@
     <string name="city">Tỉnh/Thành phố</string>
     <string name="date1">Ngày nhận xe</string>
     <string name="date2">Ngày trả xe</string>
+    <string name="notify">Thông báo</string>
+    <string name="none_notify">Không có thông báo nào</string>
+    <string name="trip">Chuyến của tôi</string>
+    <string name="none_trip">Bạn chưa có chuyến đi nào</string>
+    <string name="history">Xem lịch sử</string>
 </resources>
