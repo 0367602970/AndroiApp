@@ -3,21 +3,16 @@ package com.example.tltt_application.Fragment;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import java.util.Calendar;
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.tltt_application.LoginActivity;
+import com.example.tltt_application.CarListActivity;
 import com.example.tltt_application.R;
 import com.example.tltt_application.databinding.FragmentHomeBinding;
+import java.util.Calendar;
 
 public class HomeFragment extends Fragment {
 
@@ -33,7 +28,15 @@ public class HomeFragment extends Fragment {
         // Khởi tạo View Binding cho Fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
-        // Hiển thị tab_date mặc định
+        // Nhận name từ Bundle
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            String name = bundle.getString("name");
+            if (name != null) {
+                binding.nameWelcome.setText("Chào mừng, " + name);
+            }
+        }
+
         showTabDate();
 
         // Xử lý sự kiện bấm vào tab_date
@@ -52,7 +55,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        // Khởi tạo calendar
         calendar = Calendar.getInstance();
 
         // Gắn sự kiện cho pickup date (TextView và ImageView)
@@ -62,6 +64,8 @@ public class HomeFragment extends Fragment {
         // Gắn sự kiện cho return date (TextView và ImageView)
         setupDatePicker(binding.returnDate, binding.returnDateIcon);
         setupTimePicker(binding.returnTime, binding.returnTimeIcon);
+
+        setupSearchButton();
 
         return binding.getRoot();
     }
@@ -90,7 +94,6 @@ public class HomeFragment extends Fragment {
         binding.tabDate.setTextColor(getResources().getColor(android.R.color.black));
     }
 
-    // Phương thức để gắn sự kiện chọn ngày
     private void setupDatePicker(android.widget.TextView textView, android.widget.ImageView imageView) {
         View.OnClickListener dateClickListener = v -> {
             int year = calendar.get(Calendar.YEAR);
@@ -98,7 +101,7 @@ public class HomeFragment extends Fragment {
             int day = calendar.get(Calendar.DAY_OF_MONTH);
 
             DatePickerDialog datePickerDialog = new DatePickerDialog(
-                    requireContext(), // Sử dụng requireContext() thay vì HomeFragment.this
+                    getActivity(),
                     (view, selectedYear, selectedMonth, selectedDay) -> {
                         String date = selectedDay + "/" + (selectedMonth + 1) + "/" + selectedYear;
                         textView.setText(date);
@@ -111,14 +114,13 @@ public class HomeFragment extends Fragment {
         imageView.setOnClickListener(dateClickListener);
     }
 
-    // Phương thức để gắn sự kiện chọn giờ
     private void setupTimePicker(android.widget.TextView textView, android.widget.ImageView imageView) {
         View.OnClickListener timeClickListener = v -> {
             int hour = calendar.get(Calendar.HOUR_OF_DAY);
             int minute = calendar.get(Calendar.MINUTE);
 
             TimePickerDialog timePickerDialog = new TimePickerDialog(
-                    requireContext(), // Sử dụng requireContext() thay vì HomeFragment.this
+                    getActivity(),
                     (view, selectedHour, selectedMinute) -> {
                         String time = String.format("%02d:%02d", selectedHour, selectedMinute);
                         textView.setText(time);
@@ -131,9 +133,23 @@ public class HomeFragment extends Fragment {
         imageView.setOnClickListener(timeClickListener);
     }
 
+    private void setupSearchButton() {
+        // Xử lý sự kiện bấm nút "Tìm xe" trong tab_date
+        binding.tabDateContent.findViewById(R.id.btn_search_date).setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), CarListActivity.class);
+            startActivity(intent);
+        });
+
+        // Xử lý sự kiện bấm nút "Tìm xe" trong tab_month
+        binding.tabMonthContent.findViewById(R.id.btn_search_month).setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), CarListActivity.class);
+            startActivity(intent);
+        });
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null; // Giải phóng binding
+        binding = null;
     }
 }

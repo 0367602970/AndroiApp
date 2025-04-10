@@ -9,17 +9,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.tltt_application.R;
-import com.example.tltt_application.databinding.FragmentNotifyBinding;
-import com.example.tltt_application.databinding.FragmentTripBinding;
+import com.example.tltt_application.databinding.FragmentLoginBinding;
 
-public class TripFragment extends Fragment {
-    private FragmentTripBinding binding;
+public class LoginFragment extends Fragment {
+    private FragmentLoginBinding binding;
 
-    public TripFragment() {}
+    public LoginFragment(){}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentTripBinding.inflate(inflater, container, false);
+        binding = FragmentLoginBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 

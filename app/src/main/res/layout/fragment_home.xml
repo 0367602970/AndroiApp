@@ -292,6 +292,7 @@
 
                     <!-- Button Tìm xe -->
                     <Button
+                        android:id="@+id/btn_search_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
@@ -328,6 +329,7 @@
 
                     <!-- Button Tìm xe -->
                     <Button
+                        android:id="@+id/btn_search_month"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
