@@ -14,15 +14,16 @@ import com.bumptech.glide.Glide;
 import com.example.tltt_application.R;
 import com.example.tltt_application.objects.Car;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
     private Context context;
     private List<Car> carList;
 
-    public CarAdapter(Context context, List<Car> carList) {
+    public CarAdapter(Context context) {
         this.context = context;
-        this.carList = carList;
+        this.carList = new ArrayList<>();
     }
 
     @NonNull
@@ -63,6 +64,12 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
             return carList.size();
         else
             return 0;
+    }
+
+    public void updateCarList(List<Car> newCarList) {
+        this.carList.clear();
+        this.carList.addAll(newCarList);
+        notifyDataSetChanged();
     }
 
     public static class CarViewHolder extends RecyclerView.ViewHolder {

@@ -1,4 +1,4 @@
-package com.example.tltt_application;
+package com.example.tltt_application.View;
 
 import android.content.Intent;
 import android.os.Bundle;

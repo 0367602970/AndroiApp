@@ -14,13 +14,13 @@
         android:theme="@style/Theme.TLTT_Application"
         tools:targetApi="31">
         <activity
-            android:name=".CarListActivity"
+            android:name=".View.CarListActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".View.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".View.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,7 +29,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SigninActivity"
+            android:name=".View.SigninActivity"
             android:windowSoftInputMode="adjustResize" />
     </application>
 

@@ -94,15 +94,7 @@
                         android:textColor="@android:color/white"
                         android:textSize="16sp" />
 
-                    <Button
-                        android:id="@+id/tab_month"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:text="@string/Tab2"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp" />
+
                 </LinearLayout>
 
                 <!-- Tab thuê ngày -->
@@ -302,42 +294,7 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Tab thuê tháng -->
-                <LinearLayout
-                    android:id="@+id/tab_month_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_background"
-                    android:orientation="vertical"
-                    android:padding="16dp"
-                    android:visibility="gone">
 
-                    <!-- Ví dụ nội dung cho tab_month -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Chọn số tháng thuê"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp" />
-
-                    <Spinner
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@android:drawable/edit_text"
-                        android:entries="@array/months" />
-
-                    <!-- Button Tìm xe -->
-                    <Button
-                        android:id="@+id/btn_search_month"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:background="@drawable/app_color_btn_bg"
-                        android:text="Tìm xe"
-                        android:textColor="@android:color/white"
-                        android:textSize="16sp" />
-                </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>

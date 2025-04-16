@@ -1,4 +1,4 @@
-package com.example.tltt_application;
+package com.example.tltt_application.View;
 
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +12,7 @@ import com.example.tltt_application.Fragment.HomeFragment;
 import com.example.tltt_application.Fragment.NotifyFragment;
 import com.example.tltt_application.Fragment.SupportFragment;
 import com.example.tltt_application.Fragment.TripFragment;
+import com.example.tltt_application.R;
 import com.example.tltt_application.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {

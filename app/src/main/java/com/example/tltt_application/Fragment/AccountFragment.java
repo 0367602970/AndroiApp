@@ -10,8 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.tltt_application.LoginActivity;
-import com.example.tltt_application.R;
+import com.example.tltt_application.View.LoginActivity;
 import com.example.tltt_application.databinding.FragmentAccountBinding;
 
 
