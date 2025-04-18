@@ -37,6 +37,7 @@ public class CarRepository {
                                 Car car = document.toObject(Car.class);
                                 Log.d("CarRepository", "Document ID: " + document.getId());
                                 Log.d("CarRepository", "ImageUrl: " + car.getImageUrl());
+                                Log.d("CarRepository", "ImageUrls: " + car.getImageUrls());
                                 Log.d("CarRepository", "Name: " + car.getName());
                                 Log.d("CarRepository", "Price: " + car.getPrice());
                                 Log.d("CarRepository", "Tidy: " + car.getTidy());

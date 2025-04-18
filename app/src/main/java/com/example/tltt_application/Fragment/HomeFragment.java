@@ -50,7 +50,7 @@ public class HomeFragment extends Fragment {
         setupTimePicker(binding.pickupTime, binding.pickupTimeIcon);
 
         // Gắn sự kiện cho return date (TextView và ImageView)
-        setupDatePicker(binding.returnDate, binding.returnDateIcon);
+        setupDateReturn(binding.returnDate, binding.returnDateIcon);
         setupTimePicker(binding.returnTime, binding.returnTimeIcon);
 
         setupSearchButton();
@@ -68,7 +68,7 @@ public class HomeFragment extends Fragment {
         // Lấy ngày tháng năm hiện tại và hiển thị mặc định
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH) + 1;
 
         // Định dạng ngày hiện tại
         String currentDate = day + "/" + (month + 1) + "/" + year;
@@ -95,9 +95,20 @@ public class HomeFragment extends Fragment {
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int minute = calendar.get(Calendar.MINUTE);
 
+        int displayHour;
+        int displayMinute;
+
         // Định dạng giờ hiện tại (ví dụ: 14:30)
-        String currentTime = String.format("%02d:%02d", hour, minute);
-        textView.setText(currentTime); // Đặt giờ hiện tại làm mặc định
+
+        if (hour >= 7 && hour < 17) {
+            displayHour = hour;
+            displayMinute = minute;
+        } else {
+            displayHour = 10;
+            displayMinute = 0;
+        }
+        String currentTime = String.format("%02d:%02d", displayHour, displayMinute);
+        textView.setText(currentTime);
 
         // Listener để mở TimePickerDialog khi bấm vào TextView hoặc ImageView
         View.OnClickListener timeClickListener = v -> {
@@ -113,6 +124,32 @@ public class HomeFragment extends Fragment {
 
         textView.setOnClickListener(timeClickListener);
         imageView.setOnClickListener(timeClickListener);
+    }
+
+    private void setupDateReturn(TextView textView, ImageView imageView) {
+        // Lấy ngày tháng năm hiện tại và hiển thị mặc định
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH) + 2;
+
+        // Định dạng ngày hiện tại
+        String currentDate = day + "/" + (month + 1) + "/" + year;
+        textView.setText(currentDate); // Đặt ngày hiện tại làm mặc định
+
+        // Listener để mở DatePickerDialog khi bấm vào TextView hoặc ImageView
+        View.OnClickListener dateClickListener = v -> {
+            DatePickerDialog datePickerDialog = new DatePickerDialog(
+                    getActivity(),
+                    (view, selectedYear, selectedMonth, selectedDay) -> {
+                        String date = selectedDay + "/" + (selectedMonth + 1) + "/" + selectedYear;
+                        textView.setText(date);
+                    },
+                    year, month, day);
+            datePickerDialog.show();
+        };
+
+        textView.setOnClickListener(dateClickListener);
+        imageView.setOnClickListener(dateClickListener);
     }
 
     private void setupSearchButton() {

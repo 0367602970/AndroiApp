@@ -1,7 +1,12 @@
 package com.example.tltt_application.objects;
 
-public class Car {
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Car implements Serializable {
     private String imageUrl;
+    private List<String> imageUrls;
     private String name;
     private int price;
     private String tidy;
@@ -10,10 +15,12 @@ public class Car {
     private String kind;
 
     public Car() {
+        this.imageUrls = new ArrayList<>();
     }
 
-    public Car( String imageUrl, String name, int price, String tidy, String seats, String trunk, String kind) {
+    public Car( String imageUrl, List<String> imageUrls,String name, int price, String tidy, String seats, String trunk, String kind) {
         this.imageUrl = imageUrl;
+        this.imageUrls = imageUrls != null ? imageUrls : new ArrayList<>();
         this.name = name;
         this.price = price;
         this.tidy = tidy;
@@ -29,6 +36,9 @@ public class Car {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+    public List<String> getImageUrls() { return imageUrls; }
+
+    public void setImageUrls(List<String> imageUrls) { this.imageUrls = imageUrls != null ? imageUrls : new ArrayList<>(); }
 
     public String getName() {
         return name;

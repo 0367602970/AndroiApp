@@ -1,6 +1,7 @@
 package com.example.tltt_application.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.tltt_application.R;
+import com.example.tltt_application.View.CarDetailActivity;
 import com.example.tltt_application.objects.Car;
 
 import java.util.ArrayList;
@@ -50,6 +52,12 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
         holder.carKind.setText(car.getKind() != null ? car.getKind() : "N/A");  // Thay range bằng kind
         holder.carSeats.setText(car.getSeats() != null ? car.getSeats() : "N/A");
         holder.carTrunk.setText(car.getTrunk() != null ? car.getTrunk() : "N/A");
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, CarDetailActivity.class);
+            intent.putExtra("car", car);
+            context.startActivity(intent);
+        });
     }
 
     // Phương thức định dạng giá thuê
