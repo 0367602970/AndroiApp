@@ -1,5 +1,6 @@
 package com.example.tltt_application.Fragment;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -22,6 +23,13 @@ public class AccountFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentAccountBinding.inflate(inflater, container, false);
 
+        String name = "Người dùng"; // Giá trị mặc định
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            name = bundle.getString("name", "Người dùng");
+        }
+        binding.accountName.setText(name);
+
         // Xử lý đăng xuất
         logout();
 
@@ -30,14 +38,28 @@ public class AccountFragment extends Fragment {
 
     public void logout() {
         binding.btnLogout.setOnClickListener(v -> {
-            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("LoginPrefs", getActivity().MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.clear();
-            editor.apply();
+            // Tạo AlertDialog để xác nhận đăng xuất
+            new AlertDialog.Builder(getActivity())
+                    .setTitle("Xác nhận")
+                    .setMessage("Bạn có chắc muốn đăng xuất?")
+                    .setPositiveButton("Có", (dialog, which) -> {
+                        // Xử lý đăng xuất
+                        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("LoginPrefs", getActivity().MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.clear();
+                        editor.apply();
 
-            Intent intent = new Intent(getActivity(), LoginActivity.class); // Sử dụng getActivity() thay vì HomeFragment.this
-            startActivity(intent);
-            getActivity().finish(); // Gọi finish() trên Activity
+                        // Chuyển về LoginActivity
+                        Intent intent = new Intent(getActivity(), LoginActivity.class);
+                        startActivity(intent);
+                        getActivity().finish(); // Kết thúc MainActivity
+                    })
+                    .setNegativeButton("Không", (dialog, which) -> {
+                        // Đóng dialog, không làm gì
+                        dialog.dismiss();
+                    })
+                    .setCancelable(false) // Không cho phép nhấn nút Back để thoát dialog
+                    .show();
         });
     }
 

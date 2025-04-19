@@ -32,13 +32,14 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
         // Nhận name từ Bundle
+        String name = "Người dùng"; // Giá trị mặc định
         Bundle bundle = getArguments();
         if (bundle != null) {
-            String name = bundle.getString("name");
-            if (name != null) {
-                binding.nameWelcome.setText("Chào mừng, " + name);
-            }
+            name = bundle.getString("name", "Người dùng");
         }
+
+        // Hiển thị thông điệp chào mừng
+        binding.nameWelcome.setText("Chào mừng, " + name);
 
         showTabDate();
 

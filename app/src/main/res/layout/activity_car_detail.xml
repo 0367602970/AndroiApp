@@ -41,8 +41,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:orientation="vertical">
 
             <!-- ViewPager2 cho ảnh to -->
             <androidx.viewpager2.widget.ViewPager2
@@ -67,7 +66,8 @@
                 android:text="VinFast VF 3"
                 android:textColor="@android:color/black"
                 android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginStart="16dp"/>
 
             <!-- Giá thuê -->
             <TextView
@@ -78,7 +78,8 @@
                 android:text="Chỉ từ 650.000 VNĐ/Ngày"
                 android:textColor="#00BFFF"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginStart="16dp"/>
 
             <!-- Loại xe -->
             <TextView
@@ -88,7 +89,8 @@
                 android:layout_marginTop="8dp"
                 android:text="Loại xe: Minicar"
                 android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"/>
 
             <!-- Quãng đường -->
             <TextView
@@ -98,7 +100,8 @@
                 android:layout_marginTop="8dp"
                 android:text="Quãng đường: 210km(NEDC)"
                 android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"/>
 
             <!-- Số chỗ ngồi -->
             <TextView
@@ -108,7 +111,8 @@
                 android:layout_marginTop="8dp"
                 android:text="Số chỗ: 4 Chỗ"
                 android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"/>
 
             <!-- Dung tích cốp -->
             <TextView
@@ -118,7 +122,8 @@
                 android:layout_marginTop="8dp"
                 android:text="Dung tích cốp: 284L"
                 android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"/>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
