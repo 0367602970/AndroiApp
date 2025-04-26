@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -40,6 +41,7 @@ public class HomeFragment extends Fragment {
 
         // Hiển thị thông điệp chào mừng
         binding.nameWelcome.setText("Chào mừng, " + name);
+        
 
         showTabDate();
 
@@ -155,8 +157,21 @@ public class HomeFragment extends Fragment {
 
     private void setupSearchButton() {
         // Xử lý sự kiện bấm nút "Tìm xe" trong tab_date
-        binding.tabDateContent.findViewById(R.id.btn_search_date).setOnClickListener(v -> {
+        binding.btnSearchDate.setOnClickListener(v -> {
+            String pickupDate = binding.pickupDate.getText().toString();
+            String pickupTime = binding.pickupTime.getText().toString();
+            String returnDate = binding.returnDate.getText().toString();
+            String returnTime = binding.returnTime.getText().toString();
+
+            Spinner city = binding.city;
+            String selectedCity = city.getSelectedItem() != null ? city.getSelectedItem().toString() : "N/A";
+
             Intent intent = new Intent(getActivity(), CarListActivity.class);
+            intent.putExtra("pickupDate", pickupDate);
+            intent.putExtra("pickupTime", pickupTime);
+            intent.putExtra("returnDate", returnDate);
+            intent.putExtra("returnTime", returnTime);
+            intent.putExtra("city", selectedCity);
             startActivity(intent);
         });
     }

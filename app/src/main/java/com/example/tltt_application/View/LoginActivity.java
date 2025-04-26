@@ -15,8 +15,10 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tltt_application.databinding.ActivityLoginBinding;
+import com.example.tltt_application.objects.User;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.gson.Gson;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -68,8 +70,12 @@ public class LoginActivity extends AppCompatActivity {
                             String name = document.getString("name");
 
                             if (storedPassword != null && storedPassword.equals(password)) {
+                                User user = document.toObject(User.class);
                                 SharedPreferences.Editor editor = getSharedPreferences("LoginPrefs", MODE_PRIVATE).edit();
                                 editor.putBoolean("isLoggedIn", true);
+                                Gson gson = new Gson();
+                                String userJson = gson.toJson(user);
+                                editor.putString("userJson", userJson);
                                 editor.putString("userName", name); // Lưu name vào SharedPreferences
                                 editor.apply();
 

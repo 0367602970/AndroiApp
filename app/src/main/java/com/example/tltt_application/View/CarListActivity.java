@@ -1,5 +1,6 @@
 package com.example.tltt_application.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -31,8 +32,15 @@ public class CarListActivity extends AppCompatActivity {
         // Khởi tạo ViewModel
         viewModel = new ViewModelProvider(this).get(CarListViewModel.class);
 
+        Intent intent = getIntent();
+        String pickupDate = intent.getStringExtra("pickupDate");
+        String pickupTime = intent.getStringExtra("pickupTime");
+        String returnDate = intent.getStringExtra("returnDate");
+        String returnTime = intent.getStringExtra("returnTime");
+        String city = intent.getStringExtra("city");
+
         // Khởi tạo RecyclerView
-        carAdapter = new CarAdapter(this);
+        carAdapter = new CarAdapter(this, pickupDate, pickupTime, returnDate, returnTime, city);
         binding.recyclerViewCars.setLayoutManager(new LinearLayoutManager(this));
         binding.recyclerViewCars.setAdapter(carAdapter);
         binding.recyclerViewCars.setHasFixedSize(true);

@@ -1,5 +1,7 @@
 package com.example.tltt_application.View;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -16,6 +18,8 @@ import com.example.tltt_application.Adapter.ThumbnailAdapter;
 import com.example.tltt_application.R;
 import com.example.tltt_application.databinding.ActivityCarDetailBinding;
 import com.example.tltt_application.objects.Car;
+import com.example.tltt_application.objects.User;
+import com.google.gson.Gson;
 
 public class CarDetailActivity extends AppCompatActivity {
     private ActivityCarDetailBinding binding;
@@ -26,8 +30,25 @@ public class CarDetailActivity extends AppCompatActivity {
         binding = ActivityCarDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        SharedPreferences sharedPreferences = getSharedPreferences("LoginPrefs", MODE_PRIVATE);
+        String userJson = sharedPreferences.getString("userJson", "");
+        User user = null;
+        if (!userJson.isEmpty()) {
+            Gson gson = new Gson();
+            user = gson.fromJson(userJson, User.class);
+        }
+        if (user == null) {
+            user = new User("Người dùng", "", "", "", "", "");
+        }
+
         // Nhận dữ liệu từ Intent
-        Car car = (Car) getIntent().getSerializableExtra("car");
+        Intent intent = getIntent();
+        String pickupDate = intent.getStringExtra("pickupDate");
+        String pickupTime = intent.getStringExtra("pickupTime");
+        String returnDate = intent.getStringExtra("returnDate");
+        String returnTime = intent.getStringExtra("returnTime");
+        String city = intent.getStringExtra("city");
+        Car car = (Car) intent.getSerializableExtra("car");
         if (car == null) {
             Toast.makeText(this, "Lỗi: Không tìm thấy thông tin xe", Toast.LENGTH_SHORT).show();
             finish();
@@ -63,9 +84,17 @@ public class CarDetailActivity extends AppCompatActivity {
         });
 
         // Xử lý nút Đặt xe
+        User finalUser = user;
         binding.bookButton.setOnClickListener(v -> {
-            Toast.makeText(this, "Chức năng đặt xe đang được phát triển!", Toast.LENGTH_SHORT).show();
-            // Thêm logic đặt xe ở đây (ví dụ: chuyển sang Activity đặt xe)
+            Intent confirmIntent = new Intent(CarDetailActivity.this, ConfirmActivity.class);
+            confirmIntent.putExtra("pickupDate", pickupDate);
+            confirmIntent.putExtra("pickupTime", pickupTime);
+            confirmIntent.putExtra("returnDate", returnDate);
+            confirmIntent.putExtra("returnTime", returnTime);
+            confirmIntent.putExtra("city", city);
+            confirmIntent.putExtra("car", car);
+            confirmIntent.putExtra("user", finalUser);
+            startActivity(confirmIntent);
         });
     }
 

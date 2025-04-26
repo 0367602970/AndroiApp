@@ -22,10 +22,20 @@ import java.util.List;
 public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
     private Context context;
     private List<Car> carList;
+    private String pickupDate;
+    private String pickupTime;
+    private String returnDate;
+    private String returnTime;
+    private String city;
 
-    public CarAdapter(Context context) {
+    public CarAdapter(Context context, String pickupDate, String pickupTime, String returnDate, String returnTime, String city) {
         this.context = context;
         this.carList = new ArrayList<>();
+        this.pickupDate = pickupDate;
+        this.pickupTime = pickupTime;
+        this.returnDate = returnDate;
+        this.returnTime = returnTime;
+        this.city = city;
     }
 
     @NonNull
@@ -56,6 +66,11 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, CarDetailActivity.class);
             intent.putExtra("car", car);
+            intent.putExtra("pickupDate", pickupDate);
+            intent.putExtra("pickupTime", pickupTime);
+            intent.putExtra("returnDate", returnDate);
+            intent.putExtra("returnTime", returnTime);
+            intent.putExtra("city", city);
             context.startActivity(intent);
         });
     }

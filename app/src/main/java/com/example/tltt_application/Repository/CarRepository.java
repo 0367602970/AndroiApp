@@ -35,15 +35,6 @@ public class CarRepository {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             try {
                                 Car car = document.toObject(Car.class);
-                                Log.d("CarRepository", "Document ID: " + document.getId());
-                                Log.d("CarRepository", "ImageUrl: " + car.getImageUrl());
-                                Log.d("CarRepository", "ImageUrls: " + car.getImageUrls());
-                                Log.d("CarRepository", "Name: " + car.getName());
-                                Log.d("CarRepository", "Price: " + car.getPrice());
-                                Log.d("CarRepository", "Tidy: " + car.getTidy());
-                                Log.d("CarRepository", "Seats: " + car.getSeats());
-                                Log.d("CarRepository", "Trunk: " + car.getTrunk());
-                                Log.d("CarRepository", "Kind: " + car.getKind());
                                 carList.add(car);
                             } catch (Exception e) {
                                 Log.e("CarRepository", "Lỗi khi ánh xạ document: " + document.getId(), e);

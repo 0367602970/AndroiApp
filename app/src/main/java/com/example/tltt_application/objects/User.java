@@ -1,27 +1,26 @@
 package com.example.tltt_application.objects;
 
-import androidx.annotation.Size;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-
 import java.io.Serializable;
 
-public class User{
+public class User implements Serializable{
     private String phone;
 
     private String name;
 
     private String password;
     private String confirmPassword;
+    private String gender;
+    private String GPLX;
     public User() {
     }
 
-    public User(String phone, String name, String password, String confirmPassword) {
+    public User(String phone, String name, String password, String confirmPassword, String gender, String GPLX) {
         this.phone = phone;
         this.name = name;
         this.password = password;
         this.confirmPassword = confirmPassword;
+        this.gender = gender;
+        this.GPLX = GPLX;
     }
 
     // Getter và Setter cho phone
@@ -58,5 +57,21 @@ public class User{
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getGPLX() {
+        return GPLX;
+    }
+
+    public void setGPLX(String GPLX) {
+        this.GPLX = GPLX;
     }
 }

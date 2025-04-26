@@ -15,6 +15,9 @@
         android:theme="@style/Theme.TLTT_Application"
         tools:targetApi="31">
         <activity
+            android:name=".View.ConfirmActivity"
+            android:exported="false" />
+        <activity
             android:name=".View.CarDetailActivity"
             android:exported="false" />
         <activity

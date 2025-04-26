@@ -1,7 +1,7 @@
 package com.example.tltt_application.View;
 
 import android.os.Bundle;
-import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -11,7 +11,6 @@ import com.example.tltt_application.Fragment.AccountFragment;
 import com.example.tltt_application.Fragment.HomeFragment;
 import com.example.tltt_application.Fragment.NotifyFragment;
 import com.example.tltt_application.Fragment.SupportFragment;
-import com.example.tltt_application.Fragment.TripFragment;
 import com.example.tltt_application.R;
 import com.example.tltt_application.databinding.ActivityMainBinding;
 
@@ -21,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     private String name; // Lưu name để sử dụng lại
     private HomeFragment homeFragment;
     private NotifyFragment notifyFragment;
-    private TripFragment tripFragment;
     private SupportFragment supportFragment;
     private AccountFragment accountFragment;
 
@@ -50,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         homeFragment.setArguments(homeBundle);
 
         notifyFragment = new NotifyFragment();
-        tripFragment = new TripFragment();
         supportFragment = new SupportFragment();
 
         accountFragment = new AccountFragment();
@@ -81,13 +78,6 @@ public class MainActivity extends AppCompatActivity {
             resetNavigationSelection();
             binding.navNotify.setSelected(true);
             showFragment(notifyFragment);
-        });
-
-        // Trang Trip
-        binding.navTrip.setOnClickListener(v -> {
-            resetNavigationSelection();
-            binding.navTrip.setSelected(true);
-            showFragment(tripFragment);
         });
 
         // Trang Support
@@ -121,13 +111,12 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.fragment_container, fragment);
-        transaction.commit();
-    }
+        transaction.commit();    }
+
 
     private void resetNavigationSelection() {
         binding.navHome.setSelected(false);
         binding.navNotify.setSelected(false);
-        binding.navTrip.setSelected(false);
         binding.navSupport.setSelected(false);
         binding.navAccount.setSelected(false);
     }

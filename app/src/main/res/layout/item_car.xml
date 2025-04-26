@@ -72,7 +72,7 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/trip_selector" />
+                    android:src="@drawable/home_selector" />
 
                 <TextView
                     android:id="@+id/car_kind"
@@ -95,7 +95,7 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/trip_selector" />
+                    android:src="@drawable/home_selector" />
 
                 <TextView
                     android:id="@+id/car_tidy"
@@ -127,7 +127,7 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/trip_selector" />
+                    android:src="@drawable/home_selector" />
 
                 <TextView
                     android:id="@+id/car_seats"
@@ -150,7 +150,7 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/trip_selector" />
+                    android:src="@drawable/home_selector" />
 
                 <TextView
                     android:id="@+id/car_trunk"
