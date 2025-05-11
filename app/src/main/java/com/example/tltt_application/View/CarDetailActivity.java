@@ -38,7 +38,7 @@ public class CarDetailActivity extends AppCompatActivity {
             user = gson.fromJson(userJson, User.class);
         }
         if (user == null) {
-            user = new User("Người dùng", "", "", "", "", "");
+            user = new User("Người dùng", "", "", "", "", "", "");
         }
 
         // Nhận dữ liệu từ Intent

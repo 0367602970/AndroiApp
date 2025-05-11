@@ -84,6 +84,7 @@
 
             <!-- Item 1 -->
             <LinearLayout
+                android:id="@+id/myAccount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -152,6 +153,7 @@
 
             <!-- Item 3 -->
             <LinearLayout
+                android:id="@+id/carHistory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -267,6 +269,7 @@
             android:padding="16dp">
 
             <LinearLayout
+                android:id="@+id/changePassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"

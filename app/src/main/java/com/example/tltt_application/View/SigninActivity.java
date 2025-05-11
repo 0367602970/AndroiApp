@@ -71,6 +71,12 @@ public class SigninActivity extends AppCompatActivity {
                         });
             }
         });
+
+        binding.btnCancel.setOnClickListener(v -> {
+            Intent intentCancel = new Intent(this, LoginActivity.class);
+            startActivity(intentCancel);
+            finish();
+        });
     }
 
     private boolean validateInput(String phoneNumber, String name, String password, String confirmPassword) {

@@ -164,27 +164,45 @@
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"/>
 
-            <!-- Ghi chú -->
+            <!-- Giấy tờ -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Ghi chú"
+                android:text="Giấy tờ thuê xe"
                 android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"/>
 
-            <EditText
-                android:id="@+id/noteEditText"
+            <TextView
+                android:id="@+id/textView3"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_marginTop="8dp"
-                android:hint="Nhập nội dung ghi chú"
-                android:inputType="textMultiLine"
-                android:background="@drawable/edittext_bg"
-                android:padding="8dp"
-                android:textSize="14sp"
-                tools:text="Nhập nội dung ghi chú" />
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:text="Chọn 1 trong 2 phương thức :" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/radioButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="GPLX (đối chiếu) &amp; CCCD (đối chiếu VNeID)" />
+
+                <RadioButton
+                    android:id="@+id/radioButton2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="GPLX (đối chiếu) &amp; Passport (Giữ lại)" />
+            </RadioGroup>
+
+
         </LinearLayout>
     </ScrollView>
 

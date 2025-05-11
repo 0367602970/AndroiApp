@@ -11,16 +11,18 @@ public class User implements Serializable{
     private String confirmPassword;
     private String gender;
     private String GPLX;
+    private String birth;
     public User() {
     }
 
-    public User(String phone, String name, String password, String confirmPassword, String gender, String GPLX) {
+    public User(String phone, String name, String password, String confirmPassword, String gender, String GPLX, String birth) {
         this.phone = phone;
         this.name = name;
         this.password = password;
         this.confirmPassword = confirmPassword;
         this.gender = gender;
         this.GPLX = GPLX;
+        this.birth = birth;
     }
 
     // Getter và Setter cho phone
@@ -73,5 +75,13 @@ public class User implements Serializable{
 
     public void setGPLX(String GPLX) {
         this.GPLX = GPLX;
+    }
+
+    public String getBirth() {
+        return birth;
+    }
+
+    public void setBirth(String birth) {
+        this.birth = birth;
     }
 }

@@ -11,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.tltt_application.View.ChangePasswordActivity;
 import com.example.tltt_application.View.LoginActivity;
+import com.example.tltt_application.View.MyAccountActivity;
 import com.example.tltt_application.databinding.FragmentAccountBinding;
 
 
@@ -32,8 +34,26 @@ public class AccountFragment extends Fragment {
 
         // Xử lý đăng xuất
         logout();
+        myAccount();
+        changePassword();
 
         return binding.getRoot();
+    }
+
+    public void myAccount(){
+        binding.myAccount.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), MyAccountActivity.class);
+            startActivity(intent);
+            getActivity().finish();
+        });
+    }
+
+    public void changePassword() {
+        binding.changePassword.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), ChangePasswordActivity.class);
+            startActivity(intent);
+            getActivity().finish();
+        });
     }
 
     public void logout() {

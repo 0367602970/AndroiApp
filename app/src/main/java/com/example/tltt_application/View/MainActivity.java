@@ -55,8 +55,18 @@ public class MainActivity extends AppCompatActivity {
         accountBundle.putString("name", name);
         accountFragment.setArguments(accountBundle);
 
-        // Mặc định hiển thị HomeFragment
-        showFragment(homeFragment);
+        // Kiểm tra Intent để hiển thị Fragment
+        String fragmentToShow = getIntent().getStringExtra("showFragment");
+        if (fragmentToShow != null && fragmentToShow.equals("AccountFragment")) {
+            showFragment(accountFragment);
+            resetNavigationSelection();
+            binding.navAccount.setSelected(true);
+        } else {
+            // Mặc định hiển thị HomeFragment
+            showFragment(homeFragment);
+            resetNavigationSelection();
+            binding.navHome.setSelected(true);
+        }
 
         // Xử lý sự kiện bấm vào các ImageView trong linearLayout3
         setupBottomNavigation();
