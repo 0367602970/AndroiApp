@@ -68,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                             DocumentSnapshot document = task.getResult().getDocuments().get(0);
                             String storedPassword = document.getString("password");
                             String name = document.getString("name");
+                            String userId = document.getString("phone");
 
                             if (storedPassword != null && storedPassword.equals(password)) {
                                 User user = document.toObject(User.class);
@@ -77,6 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                                 String userJson = gson.toJson(user);
                                 editor.putString("userJson", userJson);
                                 editor.putString("userName", name); // Lưu name vào SharedPreferences
+                                editor.putString("userId", userId);
                                 editor.apply();
 
                                 Intent intent = new Intent(this, MainActivity.class);
